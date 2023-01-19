@@ -15,7 +15,6 @@
 </div>
 	
 <?= $this->endSection('content') ?>
-
 <?= $this->section('bottomjs') ?>
     <script>
         var map = L.map('map');
@@ -23,14 +22,28 @@
         L.tileLayer('http://{s}.google.com/vt/lyrs=p&x={x}&y={y}&z={z}',{
             maxZoom: 20,
             subdomains:['mt0','mt1','mt2','mt3']
-        }).addTo(map)
+        }).addTo(map);
         
+        map.locate({setView: true, maxZoom: 16});
 
-        <?php foreach ($data["data"] as $dt) : ?>
-            var marker = L.marker([<?= $dt['bujur'] ?>, <?= $dt['lintang'] ?>], {id: <?= $dt['id_toko'] ?>}).addTo(map);
-            marker.bindPopup("<p class='fw-bold'><?= $dt['nama_toko'] ?></p><p><?= $dt['alamat_toko'] ?></p><a href='<?= base_url() . '/detail/toko/' . $dt['id_toko'] ?>' class='btn text-white btn-sm btn-primary'>Detail</a>");
-            map.setView([<?= $dt['bujur'] ?>, <?= $dt['lintang'] ?>], 15)
-        <?php endforeach ?>
+        function onLocationFound(e) {
+            var radius = e.accuracy;
+
+            L.marker(e.latlng).addTo(map)
+            map.setView(e.latlng, 15)
+
+            L.Routing.control({
+            waypoints: [
+                L.latLng(e.latlng.lat, e.latlng.lng),
+                L.latLng(<?= $data['bujur'] ?>, <?= $data['lintang'] ?>)
+            ]
+            }).addTo(map);
+        }
+
+        map.on('locationfound', onLocationFound);
+
+        
+      
 
     </script>
 <?= $this->endSection('bottomjs') ?>

@@ -31,6 +31,7 @@ $routes->set404Override();
 // route since we don't have to scan directories.
 $routes->get('/', 'Maps::index');
 $routes->get('/detail/toko/(:num)', 'Maps::detail/$1');
+$routes->get('/arah/(:num)', 'Maps::arah/$1');
 
 /*
  * --------------------------------------------------------------------

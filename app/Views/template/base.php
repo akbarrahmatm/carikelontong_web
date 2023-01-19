@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
         integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin="" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+    <link rel="stylesheet" href="<?= base_url() . '/assets/leaflet-routing/leaflet-routing-machine.css' ?>">
 
 </head>
 <body>
@@ -20,6 +21,7 @@
         integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
     <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+    <script src="<?= base_url() . '/assets/leaflet-routing/leaflet-routing-machine.min.js' ?>"></script>
     <?= $this->renderSection('bottomjs'); ?>
 </body>
 </html>
