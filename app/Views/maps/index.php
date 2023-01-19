@@ -29,14 +29,8 @@
         <?php foreach ($data["data"] as $dt) : ?>
             var marker = L.marker([<?= $dt['bujur'] ?>, <?= $dt['lintang'] ?>], {id: <?= $dt['id_toko'] ?>}).addTo(map);
             marker.bindPopup("<p class='fw-bold'><?= $dt['nama_toko'] ?></p><p><?= $dt['alamat_toko'] ?></p><a href='<?= base_url() . '/detail/toko/' . $dt['id_toko'] ?>' class='btn text-white btn-sm btn-primary'>Detail</a>");
-            marker.on('click', onClick);
             map.setView([<?= $dt['bujur'] ?>, <?= $dt['lintang'] ?>], 15)
-            
-        
         <?php endforeach ?>
-        function onClick(e) {
-            $('#myModal').modal('show');
-        }
 
     </script>
 <?= $this->endSection('bottomjs') ?>
